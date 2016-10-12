@@ -1,6 +1,6 @@
 # CBS Webshop Project
 ### Final assignment for CBS course [KAN-CEBUO1000U](http://kursuskatalog.cbs.dk/2016-2017/KAN-CEBUO1000U.aspx)
-#### Team: Aliz Gyüre, André Jansson
+#### Team: Aliz Gyüre :penguin:, André Jansson :sheep:
 
 Template for this layout has been designed by Peter Lorensen; Problem inspired by Yifei Ge, Alexandru Catalin Lascar, Hao Hua Sun Yin, Klaus Christian Langenheldt, Rasmus Ege Nielsen
 
