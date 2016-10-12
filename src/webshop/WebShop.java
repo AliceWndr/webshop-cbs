@@ -10,7 +10,7 @@ public class WebShop {
 		
 		Customer mary = new Customer("Mary", "Smith", mAddress, "1980-01-01");  
 		
-		System.out.println(mary.toString());
+		System.out.println(mary);
 	}
 
 }

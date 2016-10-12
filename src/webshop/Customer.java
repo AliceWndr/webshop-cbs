@@ -9,31 +9,26 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private Address address;
-	private String username;
-	private String password;
 	private Date dateOfBirth;
-	
+	private Account account;
 	
 	public Customer(String firstName, String lastName, Address address, String birthDate) throws ParseException {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
-		this.setUsername();
-		this.setPassword();
 		this.setDateOfBirth(birthDate);
+		this.account = new Account(this.firstName, this.lastName, this.address.getZip());
 	}
 
-	
 	@Override
 	public String toString() {
-		return "First name: " + firstName + ";" +
+		return "PERSONAL - First name: " + firstName + ";" +
 				   "Last name: "  + lastName + "; " +
 				   "Address: " + address.toString() + "; " +
-				   "Username: " + username + "; " +
-				   "Password: " + password + "; " +
-				   "Date of birth: " + getDateOfBirth();
+				   "Date of birth: " + getDateOfBirth() +
+				   "\n" +
+				   "ACCOUNT - " + this.account.toString();
 	}
-	
 
 	public String getFirstName() {
 		return firstName;
@@ -53,26 +48,7 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-
-	public String getUsername() {
-		return username;
-	}
-
-
-	public void setUsername() {
-		this.username = this.firstName.substring(0, 3) + this.lastName.substring(0, 3);
-	}
-
-
-	public String getPassword() {
-		return password;
-	}
-
-
-	public void setPassword() {
-		this.password = this.lastName.substring(0, 3) + this.address.getZip();
-	}
+	
 	
 	public String getDateOfBirth() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -83,6 +59,14 @@ public class Customer {
 	public void setDateOfBirth(String birthDate) throws ParseException {
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 	    this.dateOfBirth = fmt.parse(birthDate);
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	} 
 		
 }
