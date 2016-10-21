@@ -5,12 +5,10 @@ import java.io.*;
 
 public class Catalogue {
 	
-	private static final String PATH = "/Users/andrejansson/git/webshop-cbs/CatalogueRaw";
-	
 	private HashMap<Product, Integer> stock;
 	
-	public Catalogue() throws IOException {
-		this.stock = loadStock(PATH);
+	public Catalogue(String path) throws IOException {
+		this.stock = loadStock(path);
 	}
 	
 	private static HashMap<Product, Integer> loadStock(String path) throws IOException {

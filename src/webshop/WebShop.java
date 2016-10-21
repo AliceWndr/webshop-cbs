@@ -1,25 +1,27 @@
 package webshop;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Scanner;
 import java.text.ParseException;
-import webshop.Product;
-import webshop.ShoppingCart;
 
 public class WebShop {
+	
+	public static Catalogue catalogue;
 
 	public static void main(String[] args) throws ParseException, IOException {
 		
-		Catalogue cat = new Catalogue();
-
+		init();
+		// Andre --> /Users/andrejansson/git/webshop-cbs/CatalogueRaw
+		// Aliz  --> C:\\Users\\alice\\git\\webshop-cbs\\CatalogueRaw
+		
 		Address mAddress = new Address("Sweden", "Stockholm", "Odengatan", "20", "2500");
 		
-		Customer mary = new Customer("Mary", "Smith", mAddress, "1980-01-01");  
+		Customer mary = new Customer("Mary", "Smith", mAddress, "1980-01-01");
 		
 		System.out.println(mary);
 				
-		for (Entry<Product, Integer> entry : cat.getStock().entrySet()) {
+		for (Entry<Product, Integer> entry : catalogue.getStock().entrySet()) {
 			  Product prod = entry.getKey();
 			  Integer quant = entry.getValue();
 			  System.out.println(prod);
@@ -31,6 +33,28 @@ public class WebShop {
 		cart.addProduct();
 		
 		System.out.println(cart.totalCost());*/
+	}
+	
+	public static void init() {
+		Scanner input = new Scanner(System.in);
+		
+		catalogue = importCatalogue(input);
+		
+		input.close();
+	}
+	
+	public static Catalogue importCatalogue(Scanner input) {
+		System.out.println("To set up the webshop, please type in the path for the catalogue file:");
+		while (true) {
+			try {
+				String filePath = input.next();
+				Catalogue c = new Catalogue(filePath);
+				System.out.println("Catalogue successfully imported!");
+				return c;
+			} catch (IOException e) {
+				System.out.println("File not found. Try to set the path again:");
+			}
+		}
 	}
 
 }
