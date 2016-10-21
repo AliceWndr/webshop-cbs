@@ -13,6 +13,12 @@ public class Product {
 		this.gender = gender;
 		this.price = price;
 	}
+	
+	@Override
+	public String toString() {
+		return size + ", " + color + ", " +
+				gender + ", " + price;
+	}
 
 	public String getSize() {
 		return size;
