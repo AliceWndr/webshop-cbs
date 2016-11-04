@@ -13,6 +13,10 @@ public class WebShop {
 		
 		System.out.println(ShoppingCart.checkIfDigits("12341234123a", 12));
 		
+		System.out.println(ShoppingCart.checkCardExpiry("10/13"));	
+		
+		System.out.println(ShoppingCart.checkName("Mrs. Mary Smith"));
+		
 		init();
 		// Andre --> /Users/andrejansson/git/webshop-cbs/CatalogueRaw
 		// Aliz  --> C:\\Users\\alice\\git\\webshop-cbs\\CatalogueRaw
