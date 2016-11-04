@@ -11,6 +11,8 @@ public class WebShop {
 
 	public static void main(String[] args) throws ParseException, IOException {
 		
+		System.out.println(ShoppingCart.checkIfDigits("12341234123a", 12));
+		
 		init();
 		// Andre --> /Users/andrejansson/git/webshop-cbs/CatalogueRaw
 		// Aliz  --> C:\\Users\\alice\\git\\webshop-cbs\\CatalogueRaw
@@ -35,6 +37,7 @@ public class WebShop {
 		System.out.println(cart.totalCost());*/
 	}
 	
+
 	public static void init() {
 		Scanner input = new Scanner(System.in);
 		
