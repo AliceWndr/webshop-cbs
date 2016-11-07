@@ -3,6 +3,8 @@ package webshop;
 import java.util.ArrayList;
 
 public class ShoppingCart {
+	
+	public static final double GIFT_LIMIT = 300;
 		
 	ArrayList<Product> products;
 	//Payment payment;
@@ -18,6 +20,16 @@ public class ShoppingCart {
 			sum = sum + p.getPrice();
 		}
 		return sum;
+	}
+	
+	public boolean addGift(){
+		if (this.totalCost() >= GIFT_LIMIT){
+			Gift gift = new Gift();
+			addProduct(gift); 
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void addProduct(Product p) {
