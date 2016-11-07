@@ -1,6 +1,7 @@
 package webshop;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.io.*;
 
 public class Catalogue {
@@ -43,7 +44,30 @@ public class Catalogue {
 		return stock;
 	}
 	
+	public boolean buyProduct(Product product, int n) {
+		int amountLeft = this.stock.get(product);
+		if (amountLeft > n) {
+			this.stock.put(product, amountLeft-n);
+			return true;
+		} else if (amountLeft == n) {
+			this.stock.remove(product);
+			return true;
+		} else {
+			System.out.println("You couldn't place an order on this product higher than " + amountLeft);
+			return false;
+		}
+	}
 	
+	public void printCatalogue() {
+		for (Map.Entry<Product, Integer> entry : this.stock.entrySet()) {
+			Product product = entry.getKey();
+			Integer amount = entry.getValue();
+			System.out.print("Product details: " + product.toString() + " ");
+			System.out.print("Amount: " + amount);
+			System.out.println();
+		}
+		
+	}
 
 }
 

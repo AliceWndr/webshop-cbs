@@ -22,7 +22,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "PERSONAL - First name: " + firstName + ";" +
+		return "PERSONAL - First name: " + firstName + "; " +
 				   "Last name: "  + lastName + "; " +
 				   "Address: " + address.toString() + "; " +
 				   "Date of birth: " + getDateOfBirth() +
@@ -67,6 +67,14 @@ public class Customer {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	} 
 		
 }

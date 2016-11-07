@@ -19,7 +19,7 @@ public class Account {
 		return "Username: " + username + "; " +
 			   "Password: " + password + "; " +
 			   "Logged in: " + loggedIn + "; " +
-			   "Unsucceful tries: " + tries;
+			   "Unsuccessful tries: " + tries;
 	}
 	
 	public String getUsername() {

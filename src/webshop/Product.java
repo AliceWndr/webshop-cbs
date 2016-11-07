@@ -14,6 +14,13 @@ public class Product {
 		this.price = price;
 	}
 	
+	public Product(Product sample) {
+		this.size = sample.size;
+		this.color = sample.color;
+		this.gender = sample.gender;
+		this.price = sample.price;
+	}
+	
 	@Override
 	public String toString() {
 		return size + ", " + color + ", " +
@@ -51,8 +58,6 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	
 
 
 }
