@@ -14,7 +14,14 @@ the web shop.
 ### Project and Programming Requirements
 
 - A design class diagram based on a part of the classes of the domain model, the design class diagram should contain between 3-5 classes. The class diagrams should show at minimum associations and inheritance.
-- Programming concepts you must use : use of control structures (loops and selections), three or more classes you have defined yourself, appropriate use of methods and method abstractions, a method with either overriding or overloading, array or an Arraylist, one simple inheritance, use of an external text file where you can save some or all of the data.
+- Programming concepts you must use : 
+  - Use of control structures (loops and selections), 
+  - Three or more classes you have defined yourself, 
+  - Appropriate use of methods and method abstractions, 
+  - A method with either overriding or overloading, 
+  - Array or an Arraylist, 
+  - One simple inheritance, 
+  - Use of an external text file where you can save some or all of the data.
 - Your main method should only consist of a small number of methods calls from other classes or from the class the main method is called.
 - A list of test data that examiner can run the program with. These test data should enable execution of most the codes in the program
 - A screen dump that shows how the program functions ( you can put this in the appendix).
