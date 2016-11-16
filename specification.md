@@ -15,12 +15,12 @@ the web shop.
 
 - A design class diagram based on a part of the classes of the domain model, the design class diagram should contain between 3-5 classes. The class diagrams should show at minimum associations and inheritance.
 - Programming concepts you must use : 
-  - Use of control structures (loops and selections), 
-  - Three or more classes you have defined yourself, 
-  - Appropriate use of methods and method abstractions, 
-  - A method with either overriding or overloading, 
-  - Array or an Arraylist, 
-  - One simple inheritance, 
+  - [x] Use of control structures (loops and selections), 
+  - [x] Three or more classes you have defined yourself, 
+  - [x] Appropriate use of methods and method abstractions, 
+  - [x] A method with either overriding or overloading, 
+  - [x] Array or an Arraylist, 
+  - [x] One simple inheritance, 
   - Use of an external text file where you can save some or all of the data.
 - Your main method should only consist of a small number of methods calls from other classes or from the class the main method is called.
 - A list of test data that examiner can run the program with. These test data should enable execution of most the codes in the program
@@ -37,8 +37,7 @@ system should enable customer to login with their username and password.
 - [ ] The customer needs to be able to browse the product catalogue, selects one or more products of
 their choice. The selected product(s) should be stored in a shopping cart.
 - [ ] The customers should be able to view and modify the shopping cart before they check out.
-- [ ] The customer should be able to check out and pay for the items they have chosen. If shipping information is different from their default address, the system should ask the
-customer which address to ship to.
+- [ ] The customer should be able to check out and pay for the items they have chosen. If shipping information is different from their default address, the system should ask the customer which address to ship to.
 - [ ] The web shop sells at least three types of products, e.g. T – shirts, caps and sweaters.
 - [ ] Each product has certain attributes, such as color, size, price and so forth.
 - [ ] When the order is completed, the customer should be displayed a confirmation/receipt.
@@ -79,12 +78,12 @@ larger than the “stock”.
 should be presented with the appropriate error messages.
 - Revise the Product class into super class and create subclasses for three types of T-Shirt,
 caps, sweaters and include other attributes relevant for the product type.
-- When customer has entered credit card information, validate the format of the input, e.g.
+- [x] When customer has entered credit card information, validate the format of the input, e.g.
 (card number – 12 digits, expiry date xx/xx, CVC – three digits, card holder’s name –
 String). If all input fulfills, the payment is considered to be approved. If any information
 doesn’t fulfill, ask the customer to re-enter the information. You may like to create a
 separate class called payment class.
-- When the total sum of the order exceeds certain amount, customer receives a free item (e.g.
+- [x] When the total sum of the order exceeds certain amount, customer receives a free item (e.g.
 a cap) as a gift, which will be also added into shopping cart and get displayed in the receipt
 after check out.
 
