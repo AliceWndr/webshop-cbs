@@ -21,7 +21,7 @@ the web shop.
   - [x] A method with either overriding or overloading, 
   - [x] Array or an Arraylist, 
   - [x] One simple inheritance, 
-  - [ ]Use of an external text file where you can save some or all of the data.
+  - [ ] Use of an external text file where you can save some or all of the data.
 - Your main method should only consist of a small number of methods calls from other classes or from the class the main method is called.
 - A list of test data that examiner can run the program with. These test data should enable execution of most the codes in the program
 - A screen dump that shows how the program functions ( you can put this in the appendix).
