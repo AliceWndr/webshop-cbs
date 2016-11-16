@@ -21,7 +21,7 @@ the web shop.
   - [x] A method with either overriding or overloading, 
   - [x] Array or an Arraylist, 
   - [x] One simple inheritance, 
-  - []Use of an external text file where you can save some or all of the data.
+  - [ ]Use of an external text file where you can save some or all of the data.
 - Your main method should only consist of a small number of methods calls from other classes or from the class the main method is called.
 - A list of test data that examiner can run the program with. These test data should enable execution of most the codes in the program
 - A screen dump that shows how the program functions ( you can put this in the appendix).
@@ -67,16 +67,16 @@ terminate.
 ### VERSION 2.0
 
 #### Functional requirements
-- [] Create a stock list of products in an external file (The code to work with files will be
+- [ ] Create a stock list of products in an external file (The code to work with files will be
 provided to you). You might want to initially get a working version by using an ArrayList.
 Therefore in Product class below there will be an extra attribute – “stock” of integer type.
 When the customer selects an item, system should check the required number of item is
 less than available stock, if so, place the item into shopping cart and subtract the number
 from stock accordingly; otherwise, notify the customers that they couldn’t place an order
 larger than the “stock”.
-- [] Implement exception handling for file input and output, as well as for user input. The user
+- [ ] Implement exception handling for file input and output, as well as for user input. The user
 should be presented with the appropriate error messages.
-- [] Revise the Product class into super class and create subclasses for three types of T-Shirt,
+- [ ] Revise the Product class into super class and create subclasses for three types of T-Shirt,
 caps, sweaters and include other attributes relevant for the product type.
 - [x] When customer has entered credit card information, validate the format of the input, e.g.
 (card number – 12 digits, expiry date xx/xx, CVC – three digits, card holder’s name –
