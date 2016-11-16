@@ -21,7 +21,7 @@ the web shop.
   - [x] A method with either overriding or overloading, 
   - [x] Array or an Arraylist, 
   - [x] One simple inheritance, 
-  - Use of an external text file where you can save some or all of the data.
+  - []Use of an external text file where you can save some or all of the data.
 - Your main method should only consist of a small number of methods calls from other classes or from the class the main method is called.
 - A list of test data that examiner can run the program with. These test data should enable execution of most the codes in the program
 - A screen dump that shows how the program functions ( you can put this in the appendix).
@@ -44,7 +44,7 @@ their choice. The selected product(s) should be stored in a shopping cart.
 
 #### Design Suggestions
 The program must have the following classes:
-- **WebShop**: represents the entire organisation with all the webshop. This can be used to
+- [x] **WebShop**: represents the entire organisation with all the webshop. This can be used to
 control all the interactions between classes. This class should not do any ‘work’, but instead
 pass information and request to other classes and back to the user interface. This should
 print out the welcome and thank you message to the customer. The interaction between
@@ -53,11 +53,11 @@ wants to go. Print a welcome message and gives customer option to browse through
 catalogue and make purchase transaction. Give customer the option to view and
 amend(delete or change) items in the shopping cart. You may like to have these operations
 in ShoppingCart. Print confirmation and recipt of the transaction.
-- **Product**: This should store details of product e.g T-Shirt, caps, sweaters, colour , size price
+- [x] **Product**: This should store details of product e.g T-Shirt, caps, sweaters, colour , size price
 and so forth.
-- **ShoppingCart**: should contain list of items (ArrayList) customer has ordered and calculates
+- [x] **ShoppingCart**: should contain list of items (ArrayList) customer has ordered and calculates
 the total price of items in the ShoppingCart. This class can also process payment.
-- **Customer**: with attributes name, address and date of birth, should be able to register an
+- [x] **Customer**: with attributes name, address and date of birth, should be able to register an
 account and login with their username/password. In the case the user enters wrong login
 credentials three times in a row, the program should display an error message and
 terminate.
@@ -67,16 +67,16 @@ terminate.
 ### VERSION 2.0
 
 #### Functional requirements
-- Create a stock list of products in an external file (The code to work with files will be
+- [] Create a stock list of products in an external file (The code to work with files will be
 provided to you). You might want to initially get a working version by using an ArrayList.
 Therefore in Product class below there will be an extra attribute – “stock” of integer type.
 When the customer selects an item, system should check the required number of item is
 less than available stock, if so, place the item into shopping cart and subtract the number
 from stock accordingly; otherwise, notify the customers that they couldn’t place an order
 larger than the “stock”.
-- Implement exception handling for file input and output, as well as for user input. The user
+- [] Implement exception handling for file input and output, as well as for user input. The user
 should be presented with the appropriate error messages.
-- Revise the Product class into super class and create subclasses for three types of T-Shirt,
+- [] Revise the Product class into super class and create subclasses for three types of T-Shirt,
 caps, sweaters and include other attributes relevant for the product type.
 - [x] When customer has entered credit card information, validate the format of the input, e.g.
 (card number – 12 digits, expiry date xx/xx, CVC – three digits, card holder’s name –
