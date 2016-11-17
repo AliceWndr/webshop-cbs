@@ -2,6 +2,8 @@ package webshop;
 
 public class Account {
 	
+	public static final int PASS_LIMIT = 3;
+	
 	private String username;
 	private String password;
 	private boolean loggedIn;
@@ -20,6 +22,28 @@ public class Account {
 			   "Password: " + password + "; " +
 			   "Logged in: " + loggedIn + "; " +
 			   "Unsuccessful tries: " + tries;
+	}
+	
+	public boolean isUserMatch(String user) {
+		if (user.equals(this.getUsername())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public int login(String pass) {
+		if (pass.equals(this.getPassword())) {
+			this.loggedIn = true;
+			this.tries = 0; // unsuccessful "in a row"!
+			System.out.println("Login successful!");
+			return 0;
+		} else {
+			this.tries = this.tries+1;
+			int triesLeft = PASS_LIMIT-this.tries;
+			System.out.println("Incorrect password! Tries left: " + (triesLeft));
+			return triesLeft;
+		}
 	}
 	
 	public String getUsername() {
