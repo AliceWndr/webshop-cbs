@@ -23,28 +23,15 @@ public class WebShop {
 		// Andre --> /Users/andrejansson/git/webshop-cbs/CatalogueRaw
 		// Aliz  --> C:\\Users\\alice\\git\\webshop-cbs\\CatalogueRaw
 		
-		//catalogue.printCatalogue();
-		
-		Address mAddress = new Address("Sweden", "Stockholm", "Odengatan", "20", "2500");
-		
-		Customer mary = new Customer("Mary", "Smith", mAddress, "1980-01-01");
-		
-		System.out.println(mary);
+		catalogue.printCatalogue();
 				
-
-		
-/*		ShoppingCart cart = new ShoppingCart();
-		cart.addProduct();
-		cart.addProduct();
-		
-		System.out.println(cart.totalCost());*/
 	}
 	
 
 	public static void init() throws ParseException {
 		Scanner input = new Scanner(System.in);
 		
-		//catalogue = importCatalogue(input);
+		catalogue = importCatalogue(input);
 		
 		starterScreen(input);
 		
@@ -62,8 +49,8 @@ public class WebShop {
 			String username = input.next();
 			System.out.println("Enter your password: ");
 			String pass = input.next();
-			boolean userFound = customerLogin(username, pass, input);
-			if (userFound) {
+			boolean loggedIn = customerLogin(username, pass, input);
+			if (loggedIn) {
 				System.out.println("Implement BROWSE!!!!!!");
 			} else {
 				starterScreen(input);
@@ -134,17 +121,18 @@ public class WebShop {
 				}
 				if (!a.isLoggedIn()) {
 					System.out.println("Sorry, you got banned out of our system!");
+					return false;
+				} else {
+					return true;
 				}
 			} else {
 				i++;
+				System.out.println("Username not registered!");
+				return false;
 			}
 		}
-		if (!userFound) {
-			System.out.println("Username not registered!");
-			return false;
-		} else {
-			return true;
-		} 
+		System.out.println("We don't have any registered customers yet!");
+		return false;
 	}
 
 }

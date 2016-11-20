@@ -24,7 +24,7 @@ public class ShoppingCart {
 	
 	public boolean addGift(){
 		if (this.totalCost() >= GIFT_LIMIT){
-			Gift gift = new Gift();
+			Product gift = new Product("Gift Scarf", "onesize", "black", "unisex", 0.00);
 			addProduct(gift); 
 			return true;
 		} else {

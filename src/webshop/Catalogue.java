@@ -23,13 +23,14 @@ public class Catalogue {
 		while (line != null) {
 			String[] attributes = line.split(",");
 			
-			String size = attributes[0];
-			String color = attributes[1];
-			String gender = attributes[2];
-			double price = Double.parseDouble(attributes[3]);
-			Integer quantity = Integer.parseInt(attributes[4]);
+			String type = attributes[0];
+			String size = attributes[1];
+			String color = attributes[2];
+			String gender = attributes[3];
+			double price = Double.parseDouble(attributes[4]);
+			Integer quantity = Integer.parseInt(attributes[5]);
 			
-			stocks.put(new Product(size, color, gender, price), quantity);
+			stocks.put(new Product(type, size, color, gender, price), quantity);
 				
 			//next line
 			line = fileBufferedReader.readLine();

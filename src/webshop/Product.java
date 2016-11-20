@@ -2,12 +2,14 @@ package webshop;
 
 public class Product {
 	
+	private String type;
 	private String size;
 	private String color;
 	private String gender;
 	private double price;
 	
-	public Product(String size, String color, String gender, double price) {
+	public Product(String type, String size, String color, String gender, double price) {
+		this.type = type;
 		this.size = size;
 		this.color = color;
 		this.gender = gender;
@@ -15,6 +17,7 @@ public class Product {
 	}
 	
 	public Product(Product sample) {
+		this.type = sample.type;
 		this.size = sample.size;
 		this.color = sample.color;
 		this.gender = sample.gender;
@@ -23,8 +26,18 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		return size + ", " + color + ", " +
+		return  type.toUpperCase() + ": "+ 
+				size + ", " + color + ", " +
 				gender + ", " + price;
+	}
+
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getSize() {
