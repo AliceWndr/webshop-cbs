@@ -1,23 +1,41 @@
 package webshop;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class ShoppingCart {
+public class ShoppingCart extends Catalogue {
 	
 	public static final double GIFT_LIMIT = 300;
-		
-	ArrayList<Product> products;
-	//Payment payment;
 	
 	public ShoppingCart() {
-		this.products = new ArrayList<Product>();
-		//this.payment = new Payment();
+		super();
+		this.stock = new HashMap<Product, Integer>();
+	}
+	
+	public boolean addToCart(Catalogue catalogue, Product product, int quantity) {
+		boolean removedFromCatalogue = catalogue.removeProduct(product, quantity);
+		if (removedFromCatalogue) {
+			this.addProduct(product, quantity);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean removeFromCart(Catalogue catalogue, Product product, int quantity) {
+		boolean removedFromCart = this.removeProduct(product, quantity);
+		if (removedFromCart) {
+			catalogue.addProduct(product, quantity);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public double totalCost() {
 		double sum = 0;
-		for (Product p : products){
-			sum = sum + p.getPrice();
+		for (Map.Entry<Product, Integer> entry : stock.entrySet()){
+			sum = sum + entry.getKey().getPrice();
 		}
 		return sum;
 	}
@@ -25,33 +43,10 @@ public class ShoppingCart {
 	public boolean addGift(){
 		if (this.totalCost() >= GIFT_LIMIT){
 			Product gift = new Product("Gift Scarf", "onesize", "black", "unisex", 0.00);
-			addProduct(gift); 
+			addProduct(gift, 1);
 			return true;
 		} else {
 			return false;
-		}
-	}
-	
-	public void addProduct(Product p) {
-		products.add(p);
-	}
-	
-	public void removeProduct(Product p) {
-		products.remove(p);
-	}
-	
-	
-	public void addToCart(Product product, int n) {
-		for (int i = 0; i < n; i++) {
-			Product copyOfProduct = new Product(product);
-			this.addProduct(copyOfProduct);
-		}
-	}
-	
-	public void removeFromCart(Product product, int n) {
-		for (int i = 0; i < n; i++) {
-			Product copyOfProduct = new Product(product);
-			this.removeProduct(copyOfProduct);
 		}
 	}
 	

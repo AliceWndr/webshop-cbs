@@ -6,11 +6,13 @@ import java.io.*;
 
 public class Catalogue {
 	
-	private HashMap<Product, Integer> stock;
+	protected HashMap<Product, Integer> stock;
 	
 	public Catalogue(String path) throws IOException {
 		this.stock = loadStock(path);
 	}
+	
+	public Catalogue(){}
 	
 	private static HashMap<Product, Integer> loadStock(String path) throws IOException {
 		FileReader fileReader = new FileReader(path);
@@ -45,16 +47,32 @@ public class Catalogue {
 		return stock;
 	}
 	
-	public boolean buyProduct(Product product, int n) {
-		int amountLeft = this.stock.get(product);
-		if (amountLeft > n) {
-			this.stock.put(product, amountLeft-n);
-			return true;
-		} else if (amountLeft == n) {
-			this.stock.remove(product);
-			return true;
+	public void addProduct(Product product, int quantity) {
+		if (stock.containsKey(product)) {
+			stock.put(product, stock.get(product) + quantity);
 		} else {
-			System.out.println("You couldn't place an order on this product higher than " + amountLeft);
+			stock.put(product, quantity);
+		}
+	}
+	
+	public boolean removeProduct(Product product, int quantity) {
+		if (stock.containsKey(product)) {
+			int quantityLeft = stock.get(product) - quantity;
+			if (quantityLeft > 0) {
+				stock.put(product, quantityLeft);
+				return true;
+			} else if (quantityLeft == 0) {
+				stock.remove(product);
+				return true;
+			} else {
+				System.out.println(
+						"Quantity given (" + quantity + ")"
+						+ "is higher than the"
+						+ "currently amount (" + stock.get(product) + ")");
+				return false;
+			}
+		} else {
+			System.out.println("Product not found!");
 			return false;
 		}
 	}
@@ -71,5 +89,3 @@ public class Catalogue {
 	}
 
 }
-
-
