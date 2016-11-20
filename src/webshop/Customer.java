@@ -11,6 +11,7 @@ public class Customer {
 	private Address address;
 	private Date dateOfBirth;
 	private Account account;
+	private ShoppingCart cart;
 	
 	public Customer(String firstName, String lastName, Address address, String birthDate) throws ParseException {
 		this.firstName = firstName;
@@ -18,6 +19,11 @@ public class Customer {
 		this.address = address;
 		this.setDateOfBirth(birthDate);
 		this.account = new Account(this.firstName, this.lastName, this.address.getZip());
+		this.cart = new ShoppingCart();
+	}
+	
+	public Customer(String failureCheck) {
+		this.firstName = failureCheck;
 	}
 
 	@Override
@@ -75,6 +81,10 @@ public class Customer {
 
 	public void setAddress(Address address) {
 		this.address = address;
-	} 
+	}
+	
+	public ShoppingCart getCart() {
+		return this.cart;
+	}
 		
 }

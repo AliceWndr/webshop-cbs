@@ -20,11 +20,8 @@ public class WebShop {
 		System.out.println(Payment.checkName("Mrs. Mary Smith"));
 		
 		init();
-		// Andre --> /Users/andrejansson/git/webshop-cbs/CatalogueRaw
-		// Aliz  --> C:\\Users\\alice\\git\\webshop-cbs\\CatalogueRaw
-		
-		catalogue.printCatalogue();
-				
+		// Andre (Mac) --> /Users/andrejansson/git/webshop-cbs/CatalogueRaw
+		// Aliz  (Win) --> C:\\Users\\alice\\git\\webshop-cbs\\CatalogueRaw
 	}
 	
 
@@ -39,7 +36,8 @@ public class WebShop {
 	}
 	
 	public static void starterScreen(Scanner input) throws ParseException {
-		System.out.print("Please, enter \"1\" if you are a new customer, or enter \"2\" if you already have an account! ");
+		System.out.print("Please, enter \"1\" if you are a new customer, "
+				+ "or enter \"2\" if you already have an account! ");
 		int choice = input.nextInt();
 		if (choice == 1){
 			newCustomer(input);
@@ -49,9 +47,9 @@ public class WebShop {
 			String username = input.next();
 			System.out.println("Enter your password: ");
 			String pass = input.next();
-			boolean loggedIn = customerLogin(username, pass, input);
-			if (loggedIn) {
-				System.out.println("Implement BROWSE!!!!!!");
+			Customer c = customerLogin(username, pass, input);
+			if (c.getFirstName() != "fail") {
+				browsingScreen(c, input);
 			} else {
 				starterScreen(input);
 			}
@@ -101,11 +99,12 @@ public class WebShop {
 		System.out.println("Your password is: " + customer.getAccount().getPassword());
 	}
 	
-	public static boolean customerLogin(String username, String pass, Scanner input) {
+	public static Customer customerLogin(String username, String pass, Scanner input) {
 		int i = 0;
 		boolean userFound = false;
 		Customer c;
 		Account a;
+		Customer fail = new Customer("fail");
 		while (i < customers.size() && !userFound) {
 			c = customers.get(i);
 			a = c.getAccount();
@@ -121,18 +120,69 @@ public class WebShop {
 				}
 				if (!a.isLoggedIn()) {
 					System.out.println("Sorry, you got banned out of our system!");
-					return false;
+					return fail;
 				} else {
-					return true;
+					return c;
 				}
 			} else {
 				i++;
 				System.out.println("Username not registered!");
-				return false;
+				return fail;
 			}
 		}
 		System.out.println("We don't have any registered customers yet!");
-		return false;
+		return fail;
 	}
-
+	
+	public static void browsingScreen(Customer c, Scanner input) throws ParseException {
+		System.out.print("Please, enter \"1\" if you'd like to browse the catalogue, "
+				+ "or enter \"2\" if you'd like to log out! ");
+		int choice = input.nextInt();
+		if (choice == 1){
+			System.out.println("\n\t\t--- CATALOGUE ---\n");
+			ArrayList<Product> productList = catalogue.printItems();
+			System.out.println("\n\t\t--- END ---\n");
+			modifyCartScreen(c, productList, input);
+		} else {
+			c.getAccount().setLoggedIn(false);
+			System.out.println("You've logged out successfully!");
+			starterScreen(input);
+		}
+	}
+	
+	public static void modifyCartScreen(Customer c, ArrayList<Product> productList, Scanner input) {
+		System.out.print("Please, enter \"1\" if you'd like to add items to your cart, "
+				+ "or enter \"2\" if you'd like to remove items from your cart, "
+				+ "or enter \"3\" if you'd like to proceed to checkout! ");
+		int choice = input.nextInt();
+		if (choice == 1){
+			System.out.println("Type the product id of the item you want to add to your cart!");
+			int id = input.nextInt();
+			System.out.println("Type the quantity of the product you'd like to add!");
+			int quantity = input.nextInt();
+			boolean success = c.getCart().addToCart(catalogue, productList.get(id), quantity);
+			if (success) {
+				System.out.println("Product(s) succesfully ADDED!");
+			} else {
+				System.out.println("Product(s) NOT added!");
+			}
+			modifyCartScreen(c, productList, input);
+		} else if (choice == 2) {
+			System.out.println("Type the product id of the item you want remove from your cart!");
+			int id = input.nextInt();
+			System.out.println("Type the quantity of the product you'd like to remove!");
+			int quantity = input.nextInt();
+			boolean success = c.getCart().removeFromCart(catalogue, productList.get(id), quantity);
+			if (success) {
+				System.out.println("Product(s) succesfully REMOVED!");
+			} else {
+				System.out.println("Product(s) NOT removed!");
+			}
+			modifyCartScreen(c, productList, input);
+		} else {
+			System.out.println("IMPLEMENT CHECKOUT!!!");
+		}
+	}
+	
+	
 }

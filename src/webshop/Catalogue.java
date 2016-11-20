@@ -2,6 +2,7 @@ package webshop;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 import java.io.*;
 
 public class Catalogue {
@@ -66,9 +67,9 @@ public class Catalogue {
 				return true;
 			} else {
 				System.out.println(
-						"Quantity given (" + quantity + ")"
-						+ "is higher than the"
-						+ "currently amount (" + stock.get(product) + ")");
+						"Quantity given (" + quantity + ") "
+						+ "is higher than the "
+						+ "currently available amount (" + stock.get(product) + ")!");
 				return false;
 			}
 		} else {
@@ -77,15 +78,20 @@ public class Catalogue {
 		}
 	}
 	
-	public void printCatalogue() {
+	public ArrayList<Product> printItems() {
+		ArrayList<Product> productList = new ArrayList<>();
+		int id = 0;
 		for (Map.Entry<Product, Integer> entry : this.stock.entrySet()) {
 			Product product = entry.getKey();
 			Integer amount = entry.getValue();
-			System.out.print("Product details: " + product.toString() + " ");
+			System.out.print("Product ID: " + id + " -- "+ product.toString() + " ");
 			System.out.print("Amount: " + amount);
 			System.out.println();
+			productList.add(product);
+			id += 1;
 		}
 		
+		return productList;
 	}
 
 }
