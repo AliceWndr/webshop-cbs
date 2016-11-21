@@ -35,7 +35,7 @@ public class ShoppingCart extends Catalogue {
 	public double totalCost() {
 		double sum = 0;
 		for (Map.Entry<Product, Integer> entry : stock.entrySet()) {
-			sum = sum + entry.getKey().getPrice();
+			sum = sum + entry.getKey().getPrice() * entry.getValue();
 		}
 		return sum;
 	}

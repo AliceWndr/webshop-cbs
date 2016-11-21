@@ -36,12 +36,12 @@ public class Account {
 		if (pass.equals(this.getPassword())) {
 			this.loggedIn = true;
 			this.tries = 0; // unsuccessful "in a row"!
-			System.out.println("Login successful!");
+			System.out.println("\nLogin successful!\n");
 			return 0;
 		} else {
 			this.tries = this.tries+1;
 			int triesLeft = PASS_LIMIT-this.tries;
-			System.out.println("Incorrect password! Tries left: " + (triesLeft));
+			System.out.println("Incorrect password! Tries left: " + (triesLeft) + "\n");
 			return triesLeft;
 		}
 	}
@@ -81,5 +81,4 @@ public class Account {
 		this.tries = tries;
 	}
 	
-
 }
