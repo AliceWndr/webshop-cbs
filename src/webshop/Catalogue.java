@@ -84,7 +84,7 @@ public class Catalogue {
 		for (Map.Entry<Product, Integer> entry : this.stock.entrySet()) {
 			Product product = entry.getKey();
 			Integer amount = entry.getValue();
-			System.out.print("Product ID: " + id + " -- "+ product.toString() + " ");
+			System.out.print(id + " -- "+ product.toString() + " ");
 			System.out.print("Amount: " + amount);
 			System.out.println();
 			productList.add(product);

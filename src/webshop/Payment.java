@@ -1,28 +1,13 @@
-/**
- * 
- */
 package webshop;
 
 public class Payment {
 	
 	public static final int LAST_DIGITS_CURRENT_YEAR = 16;
-		
-	public static boolean isDefaultAddress(Customer c, String country, String city, String street, String houseNr, String zip) {
-		Address a = c.getAddress();
-		if (a.getCountry() == country &&
-			a.getCity() == city &&
-			a.getStreet() == street &&
-			a.getHouseNr() == houseNr &&
-			a.getZip() == zip) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	public static final int CARDNR_LENGTH = 12;
 	
-	public static boolean checkIfDigits(String digits, int expectedLength) {
+	public static boolean checkIfDigits(String digits) {
 		int length = digits.length();
-		if (expectedLength == length) {
+		if (CARDNR_LENGTH == length) {
 			char c;
 			for (int i = 0; i < length; i++) {
 				c = digits.charAt(i);
@@ -93,14 +78,6 @@ public class Payment {
 		}
 		System.out.println("Name is valid");
 		return true;
-	}
-	
-	public static boolean checkCardData(String digits, int expectedLength, String expiry, String name) {
-		if (checkIfDigits(digits, expectedLength) && checkCardExpiry(expiry) && checkName(name)) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 }

@@ -34,19 +34,17 @@ public class ShoppingCart extends Catalogue {
 	
 	public double totalCost() {
 		double sum = 0;
-		for (Map.Entry<Product, Integer> entry : stock.entrySet()){
+		for (Map.Entry<Product, Integer> entry : stock.entrySet()) {
 			sum = sum + entry.getKey().getPrice();
 		}
 		return sum;
 	}
 	
-	public boolean addGift(){
-		if (this.totalCost() >= GIFT_LIMIT){
+	public void addGift() {
+		if (this.totalCost() >= GIFT_LIMIT) {
 			Product gift = new Product("Gift Scarf", "onesize", "black", "unisex", 0.00);
 			addProduct(gift, 1);
-			return true;
-		} else {
-			return false;
+			System.out.println("You've just received a gift!");
 		}
 	}
 	

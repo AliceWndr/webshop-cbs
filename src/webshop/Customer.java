@@ -86,5 +86,8 @@ public class Customer {
 	public ShoppingCart getCart() {
 		return this.cart;
 	}
-		
+	
+	public void setCart(ShoppingCart cart) {
+		this.cart = cart;
+	}
 }

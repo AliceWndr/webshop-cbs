@@ -2,22 +2,20 @@ package webshop;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class WebShop {
+	
+	private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
 	public static Catalogue catalogue;
 	public static ArrayList<Customer> customers = new ArrayList<Customer>();
 	
 	public static void main(String[] args) throws ParseException, IOException {
-		
-		
-		System.out.println(Payment.checkIfDigits("12341234123a", 12));
-		
-		System.out.println(Payment.checkCardExpiry("10/13"));
-		
-		System.out.println(Payment.checkName("Mrs. Mary Smith"));
 		
 		init();
 		// Andre (Mac) --> /Users/andrejansson/git/webshop-cbs/CatalogueRaw
@@ -39,14 +37,15 @@ public class WebShop {
 		System.out.print("Please, enter \"1\" if you are a new customer, "
 				+ "or enter \"2\" if you already have an account! ");
 		int choice = input.nextInt();
+		input.nextLine();
 		if (choice == 1){
 			newCustomer(input);
 			starterScreen(input);
 		} else {
 			System.out.println("Enter your username: ");
-			String username = input.next();
+			String username = input.nextLine();
 			System.out.println("Enter your password: ");
-			String pass = input.next();
+			String pass = input.nextLine();
 			Customer c = customerLogin(username, pass, input);
 			if (c.getFirstName() != "fail") {
 				browsingScreen(c, input);
@@ -60,7 +59,7 @@ public class WebShop {
 		System.out.println("To set up the webshop, please type in the path for the catalogue file:");
 		while (true) {
 			try {
-				String filePath = input.next();
+				String filePath = input.nextLine();
 				Catalogue c = new Catalogue(filePath);
 				System.out.println("Catalogue successfully imported!");
 				return c;
@@ -72,24 +71,24 @@ public class WebShop {
 	
 	public static void newCustomer(Scanner in) throws ParseException {
 		System.out.print("Please, enter your country: ");
-		String country = in.next();
+		String country = in.nextLine();
 		System.out.print("Please, enter your city: ");
-		String city = in.next();
+		String city = in.nextLine();
 		System.out.print("Please, enter your street name: ");
-		String street = in.next();
+		String street = in.nextLine();
 		System.out.print("Please, enter your house number: ");
-		String houseNr = in.next();
+		String houseNr = in.nextLine();
 		System.out.print("Please, enter your zip code: ");
-		String zip = in.next();
+		String zip = in.nextLine();
 		
 		Address address = new Address(country, city, street, houseNr, zip);
 		
 		System.out.print("Please, enter your first name: ");
-		String first = in.next();
+		String first = in.nextLine();
 		System.out.print("Enter your last name: ");
-		String last = in.next();
+		String last = in.nextLine();
 		System.out.print("Enter your birth date in the format of yyyy-mm-dd: ");
-		String birthday = in.next();
+		String birthday = in.nextLine();
 		
 		Customer customer = new Customer(first, last, address, birthday);
 		customers.add(customer);
@@ -115,7 +114,7 @@ public class WebShop {
 					triesLeft = a.login(pass); //check password
 					if (triesLeft > 0) {
 						System.out.println("Try to reenter your password: ");
-						pass = input.next(); //reassign password to check
+						pass = input.nextLine(); //reassign password to check
 					}
 				}
 				if (!a.isLoggedIn()) {
@@ -138,6 +137,7 @@ public class WebShop {
 		System.out.print("Please, enter \"1\" if you'd like to browse the catalogue, "
 				+ "or enter \"2\" if you'd like to log out! ");
 		int choice = input.nextInt();
+		input.nextLine();
 		if (choice == 1){
 			System.out.println("\n\t\t--- CATALOGUE ---\n");
 			ArrayList<Product> productList = catalogue.printItems();
@@ -150,11 +150,12 @@ public class WebShop {
 		}
 	}
 	
-	public static void modifyCartScreen(Customer c, ArrayList<Product> productList, Scanner input) {
+	public static void modifyCartScreen(Customer c, ArrayList<Product> productList, Scanner input) throws ParseException {
 		System.out.print("Please, enter \"1\" if you'd like to add items to your cart, "
 				+ "or enter \"2\" if you'd like to remove items from your cart, "
 				+ "or enter \"3\" if you'd like to proceed to checkout! ");
 		int choice = input.nextInt();
+		input.nextLine();
 		if (choice == 1){
 			System.out.println("Type the product id of the item you want to add to your cart!");
 			int id = input.nextInt();
@@ -180,9 +181,93 @@ public class WebShop {
 			}
 			modifyCartScreen(c, productList, input);
 		} else {
-			System.out.println("IMPLEMENT CHECKOUT!!!");
+			System.out.println("CONTENTS OF YOUR CART:");
+			c.getCart().printItems();
+			checkoutScreen(c, productList, input);
 		}
 	}
 	
+	public static void checkoutScreen(Customer c, ArrayList<Product> productList, Scanner input) throws ParseException {
+		System.out.print("Please, enter \"1\" if you'd like to finalize your order, "
+				+ "or enter \"2\" if you'd still like to modify your cart, "
+				+ "or enter \"3\" if you'd like to log out (contents of cart are preserved)!");
+		int choice = input.nextInt();
+		input.nextLine();
+		if (choice == 1) {
+			// 1. define address to ship to
+			Address shippingAddress;
+			System.out.println("Sould we ship to your default address? 1 - Yes, 2 - No");
+			int choiceAd = input.nextInt();
+			input.nextLine();
+			if (choiceAd == 1) {
+				shippingAddress = c.getAddress();
+			} else {
+				System.out.println("Please, enter your shipping address as the system prompts you.");
+				System.out.print("Please, enter your country: ");
+				String country = input.nextLine();
+				System.out.print("Please, enter your city: ");
+				String city = input.nextLine();
+				System.out.print("Please, enter your street name: ");
+				String street = input.nextLine();
+				System.out.print("Please, enter your house number: ");
+				String houseNr = input.nextLine();
+				System.out.print("Please, enter your zip code: ");
+				String zip = input.nextLine();
+				shippingAddress = new Address(country, city, street, houseNr, zip);
+			}
+			// 2. ask for card details
+			System.out.println("Please, enter your card details as the system prompts you.");
+			System.out.print("Enter name written on card: ");
+			String name = input.nextLine();
+			while (!Payment.checkName(name)) {
+				System.out.println("Please, try to reenter your name: ");
+				name = input.nextLine();
+			}
+			System.out.print("Enter cardnumber (12 digits): ");
+			String cardNr = input.nextLine();
+			while (!Payment.checkIfDigits(cardNr)) {
+				System.out.println("Please, try to reenter your cardnumber: ");
+				cardNr = input.nextLine();				
+			};
+			System.out.print("Enter expiry date in the format \"MM/YY\": ");
+			String expiry = input.nextLine();
+			while (!Payment.checkCardExpiry(expiry)) {
+				System.out.println("Please, try to reenter the expiry date: ");
+				expiry = input.nextLine();				
+			};
+			receiptScreen(c, input, shippingAddress, name, cardNr, expiry);
+		} else if (choice == 2) {
+			modifyCartScreen(c, productList, input);
+		} else {
+			c.getAccount().setLoggedIn(false);
+			starterScreen(input);
+		}
+	}
+	
+	public static void receiptScreen(Customer c, Scanner input, Address shippingAddress, String name, String cardNr, String expiry) throws ParseException {
+		ShoppingCart cart = c.getCart();
+		System.out.println("Order succesfully placed! (We also emptied your cart)");
+		cart.addGift(); // adding gift if limit exceeded
+		System.out.println("Thank you for shopping here! Here's your receipt:");
+		System.out.println("\n\t\t--- RECEIPT ---\n");
+		cart.printItems();
+		System.out.println("\nTOTAL COST: " + cart.totalCost());
+		System.out.println("SHIPPING ADDRESS: " + shippingAddress.toString());
+		System.out.println("CARD DETAILS: " + name + " " + cardNr + " " + expiry);
+		Date date = new Date();
+        System.out.println("DATE OF PURCHASE: " + DATE_FORMAT.format(date));
+		System.out.println("\n\t\t--- END OF RECEIPT ---\n");
+		c.setCart(new ShoppingCart()); // deleting contents of shopping cart
+		System.out.println("Please, enter \"1\" if you'd like to log out, "
+				+ "or enter \"2\" if you'd like to place another orther!");
+		int choice = input.nextInt();
+		input.nextLine();
+		if (choice == 1) {
+			c.getAccount().setLoggedIn(false);
+			starterScreen(input);
+		} else {
+			browsingScreen(c, input);
+		}
+	}
 	
 }
