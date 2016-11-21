@@ -147,8 +147,8 @@ public class WebShop {
 	}
 	
 	public static void modifyCartScreen(Customer c, ArrayList<Product> productList, Scanner input) throws ParseException {
-		System.out.print("Please, enter \"1\" if you'd like to add items to your cart, "
-				+ "or enter \"2\" if you'd like to remove items from your cart, "
+		System.out.print("Please, enter \"1\" if you'd like to add items to your cart, \n"
+				+ "or enter \"2\" if you'd like to remove items from your cart, \n"
 				+ "or enter \"3\" if you'd like to proceed to checkout!\n");
 		int choice = input.nextInt();
 		input.nextLine();
@@ -185,8 +185,8 @@ public class WebShop {
 	}
 	
 	public static void checkoutScreen(Customer c, ArrayList<Product> productList, Scanner input) throws ParseException {
-		System.out.print("Please, enter \"1\" if you'd like to finalize your order, "
-				+ "or enter \"2\" if you'd still like to modify your cart, "
+		System.out.print("Please, enter \"1\" if you'd like to finalize your order, \n"
+				+ "or enter \"2\" if you'd still like to modify your cart, \n"
 				+ "or enter \"3\" if you'd like to log out (contents of cart are preserved)!\n");
 		int choice = input.nextInt();
 		input.nextLine();
